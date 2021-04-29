@@ -1,0 +1,58 @@
+.signin{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper{
+    width: 354px;
+    height: auto;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid rgb(231, 225, 225);
+    padding-bottom: 30px;
+}
+.logo{
+    margin-top: 40px;
+}
+.forgotBlock{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start ;
+    margin-top: 10px ;
+    color: rgba(36, 52, 67, 1);
+    text-decoration: underline;
+}
+.btn{
+    width: 100%;
+    margin-top: 40px;
+    background: #377DFF;
+    border: 1px solid #377DFF;
+    border-radius: 4px;
+    color:#ffff;
+    font-size: 18px;
+    line-height: 22px;
+    height: 54px;
+}
+.form{
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.inputs{
+    width: 100%;
+    margin-top: 15px !important;
+}
+.signupText{
+    font-size: 15px;
+    margin-top: 7px;
+    font-weight: 500;
+}
