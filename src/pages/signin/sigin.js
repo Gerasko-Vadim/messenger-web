@@ -3,6 +3,7 @@ import classes from "./signin.module.css"
 import logo from "./img/logo.png"
 import { Controller, useForm } from "react-hook-form";
 import { makeStyles, TextField } from "@material-ui/core";
+import {Link} from "react-router-dom"
 
 
 
@@ -76,9 +77,12 @@ const SignIn = () => {
                         Войти
                     </button>
                 </form>
+                <Link to="/signup">
                 <span className={classes.signupText}>
                     Зарегистрироватся!
                 </span>
+                </Link>
+ 
 
             </div>
         </div>

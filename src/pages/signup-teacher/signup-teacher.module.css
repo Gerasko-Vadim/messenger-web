@@ -1,4 +1,4 @@
-.signin{
+.signupTeacher{
     width: 100%;
     height: 100%;
     display: flex;
@@ -9,26 +9,16 @@
 .wrapper{
     width: 354px;
     height: auto;
-    margin-top: 60px;
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 4px;
     border: 1px solid rgb(231, 225, 225);
-    padding-bottom: 30px;
+    padding: 30px;
 }
 .logo{
-    margin-top: 40px;
-}
-.forgotBlock{
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start ;
-    margin-top: 10px ;
-    color: rgba(36, 52, 67, 1);
-    text-decoration: underline;
+ 
 }
 .btn{
     width: 100%;
@@ -50,16 +40,4 @@
 .inputs{
     width: 100%;
     margin-top: 15px !important;
-}
-.signupText{
-    font-size: 15px;
-    margin-top: 7px;
-    font-weight: 500;
-    cursor: pointer;
-}
-.signupText:hover{
-    color: #377DFF;
-}
-a{
-    color: black;
 }
