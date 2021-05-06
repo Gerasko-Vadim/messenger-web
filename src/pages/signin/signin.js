@@ -1,23 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./signin.module.css"
 import logo from "./img/logo.png"
 import { Controller, useForm } from "react-hook-form";
 import { makeStyles, TextField } from "@material-ui/core";
-import {Link} from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
+import API from "../../redux/API"
+import { toast, ToastContainer } from "react-toastify";
 
 
 
 const SignIn = () => {
     const { handleSubmit, control, formState: { errors }, reset } = useForm();
+    const [errLogin, setErrLogin] = useState(false)
+    let history = useHistory()
 
     const onSubmitLogin = (data) => {
         console.log(data)
         //setIsLoggedIn(true);
+        API.sigin(data).then(res => {
+            localStorage.setItem('token', JSON.stringify(res.data.accessToken));
+            toast.success("Добро пожаловать!");
+            history.push({ pathname: '/' })
+        })
+            .catch(err => {
+                setErrLogin(true);
+                toast.error("Неверный логин или пароль")
+            })
     }
     return (
         <div className={classes.signin}>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <div className={classes.wrapper}>
                 <img alt="logo" src={logo} className={classes.logo} />
+                {
+                    errLogin && <span className={classes.errText}>Неверный логин или пароль</span>
+                }
 
                 <form className={classes.form} onSubmit={handleSubmit(onSubmitLogin)}>
                     <Controller
@@ -51,7 +78,7 @@ const SignIn = () => {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <TextField
-                            className={classes.inputs}
+                                className={classes.inputs}
                                 onBlur={onBlur}
                                 onChange={value => onChange(value)}
                                 value={value}
@@ -78,11 +105,11 @@ const SignIn = () => {
                     </button>
                 </form>
                 <Link to="/signup">
-                <span className={classes.signupText}>
-                    Зарегистрироватся!
+                    <span className={classes.signupText}>
+                        Зарегистрироватся!
                 </span>
                 </Link>
- 
+
 
             </div>
         </div>

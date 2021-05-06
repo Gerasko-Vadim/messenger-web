@@ -63,3 +63,7 @@
 a{
     color: black;
 }
+.errText{
+    font-size: 14px;
+    color: red;
+}

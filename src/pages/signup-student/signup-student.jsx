@@ -1,23 +1,45 @@
-import React from "react"
+import React, { useEffect } from "react"
 import classes from "./signup-student.module.css"
 import logo from "../signin/img/logo.png"
 import { Controller, useForm } from "react-hook-form";
 import MenuItem from '@material-ui/core/MenuItem';
 import { TextField } from "@material-ui/core";
+import { getAllGroupsAction } from "../../redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { registration } from "../../redux/auth/_actions/registration";
 
-const SignUpStudent=()=>{
+const SignUpStudent = () => {
     const { handleSubmit, control, formState: { errors }, reset } = useForm();
+    const dispatch = useDispatch()
+    const listGroups = useSelector((state) => state.groups.groups)
+    useEffect(() => {
+        dispatch(getAllGroupsAction())
+    }, [])
 
     const onSubmitLogin = (data) => {
-        console.log(data)
-        //setIsLoggedIn(true);
+        console.log(data);
+        dispatch(registration(data))
     }
     const arr = ["IVT", "ISR", "IST"]
 
-    return(
+    return (
         <div className={classes.signupStudent}>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+            <ToastContainer />
             <div className={classes.wrapper}>
-            <img alt="logo" src={logo} className={classes.logo} />
+                <img alt="logo" src={logo} className={classes.logo} />
                 <form className={classes.form} onSubmit={handleSubmit(onSubmitLogin)}>
                     <Controller
                         render={({ field: { onChange, onBlur, value } }) => (
@@ -115,9 +137,10 @@ const SignUpStudent=()=>{
                                 select
                             >
                                 {
-                                    arr.map((item, index) => (
-                                        <MenuItem key={index} value={item}>
-                                            {item}
+                                    listGroups &&
+                                    listGroups.map((item, index) => (
+                                        <MenuItem key={item.id} value={item.group}>
+                                            {item.group}
                                         </MenuItem>
                                     ))
                                 }

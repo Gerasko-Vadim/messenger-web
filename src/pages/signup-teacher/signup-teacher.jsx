@@ -4,18 +4,32 @@ import { Controller, useForm } from "react-hook-form";
 import MenuItem from '@material-ui/core/MenuItem';
 import classes from "./signup-teacher.module.css"
 import logo from "../signin/img/logo.png"
+import { useDispatch } from "react-redux";
+import { registration } from "../../redux/auth/_actions/registration";
+import { ToastContainer } from "react-toastify";
 
 const SignUpTeaher = () => {
     const { handleSubmit, control, formState: { errors }, reset } = useForm();
+    const dispatch = useDispatch()
 
     const onSubmitLogin = (data) => {
-        console.log(data)
-        //setIsLoggedIn(true);
+        console.log(data);
+        dispatch(registration(data))
     }
-    const arr = ["IVT", "ISR", "IST"]
 
     return (
         <div className={classes.signupTeacher}>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <div className={classes.wrapper}>
                 <img alt="logo" src={logo} className={classes.logo} />
                 <form className={classes.form} onSubmit={handleSubmit(onSubmitLogin)}>
