@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./signin.module.css"
 import logo from "./img/logo.png"
 import { Controller, useForm } from "react-hook-form";
@@ -13,11 +13,15 @@ const SignIn = () => {
     const { handleSubmit, control, formState: { errors }, reset } = useForm();
     const [errLogin, setErrLogin] = useState(false)
     let history = useHistory()
+    useEffect(()=>{
+        localStorage.removeItem('token');
+    },[])
 
     const onSubmitLogin = (data) => {
         console.log(data)
         //setIsLoggedIn(true);
         API.sigin(data).then(res => {
+            localStorage.setItem('userId',JSON.stringify(res.data._id))
             localStorage.setItem('token', JSON.stringify(res.data.accessToken));
             toast.success("Добро пожаловать!");
             history.push({ pathname: '/' })

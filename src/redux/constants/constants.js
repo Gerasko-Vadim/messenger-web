@@ -1,1 +1,2 @@
 export const GET_ALL_LIST_GROUPS = 'GET_ALL_LIST_GROUPS'
+export const GET_DATA_USER = "GET_DATA_USER"

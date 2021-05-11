@@ -12,18 +12,22 @@ import SignUpTeaher from './pages/signup-teacher/signup-teacher';
 import SignUpStudent from './pages/signup-student/signup-student';
 import Home from './pages/home/home';
 import { PrivateRoute } from './components/PrivateRoute';
+import Settings from './pages/settings/settings';
 
 function App() {
   return (
-      <Switch>
-        <Route exact path="/login" component={SignIn}/>
-        <Route  path="/signup" component={SignUp}/>
-        <Route path="/signup-teacher" component={SignUpTeaher}/>
-        <Route path="/signup-student" component={SignUpStudent}/>
-        <PrivateRoute path="/" 
-          component={Home} 
-        />
-      </Switch>
+    <Switch>
+      <Route exact path="/login" component={SignIn} />
+      <Route path="/signup" component={SignUp} />
+      <Route path="/signup-teacher" component={SignUpTeaher} />
+      <Route path="/signup-student" component={SignUpStudent} />
+      <PrivateRoute exact path="/"
+        component={Home}
+      />
+      <PrivateRoute path="/settings"
+        component={Settings}
+      />
+    </Switch>
   );
 }
 
