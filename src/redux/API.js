@@ -1,6 +1,6 @@
 import Axios from "axios";
 let token = localStorage.getItem('token');
-let userId = (localStorage.getItem('userId')).replace("%22", "")
+
 
 
 const http = Axios.create({
@@ -17,5 +17,7 @@ export default {
     getAllGroups:()=>http.get(`/groups`),
     signUpStudent:(data)=>http.post(`/auth/signUp/students`,data),
     signUpTeacher:(data)=>http.post(`/auth/signUp/teachers`,data),
-    getDataUser:()=>http.get(`/users/${userId}`)
+    getDataUser:()=>http.get(`/users`),
+    updateUser:(data)=> http.post(`/users/update`,data),
+    changePasssword:(data)=> http.post(`/users/change-password`,data)
 }

@@ -6,6 +6,7 @@ import { makeStyles, TextField } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom"
 import API from "../../redux/API"
 import { toast, ToastContainer } from "react-toastify";
+import { useLocalStorage } from "../../hooks";
 
 
 
@@ -21,11 +22,13 @@ const SignIn = () => {
         console.log(data)
         //setIsLoggedIn(true);
         API.sigin(data).then(res => {
-            localStorage.setItem('userId',JSON.stringify(res.data._id))
+            localStorage.setItem('userId', JSON.stringify(res.data._id));
             localStorage.setItem('token', JSON.stringify(res.data.accessToken));
             toast.success("Добро пожаловать!");
-            history.push({ pathname: '/' })
+            if(localStorage.getItem('token')) history.push({ pathname: '/' })
+ 
         })
+
             .catch(err => {
                 setErrLogin(true);
                 toast.error("Неверный логин или пароль")

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -51,24 +51,25 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function AvatarsSettings() {
+export default function AvatarsSettings({ srcImage, setPhoto }) {
     const classes = useStyles();
-    const [file,setFile]=useState("");
-    const [image,setImage]= useState("")
+    const [file, setFile] = useState("");
+    const [image, setImage] = useState("")
 
     const setProfile = (e) => {
         setImage(e.target.files[0]);
-        
+        setPhoto(e.target.files[0])
+
         const reader = new FileReader();
         reader.onload = () => {
-          if (reader.readyState === 2) {
-            setFile(reader.result);
-          }
+            if (reader.readyState === 2) {
+                setFile(reader.result);
+            }
         };
-        if(e.target.files[0]){
+        if (e.target.files[0]) {
             reader.readAsDataURL(e.target.files[0]);
-          }
-      };
+        }
+    };
 
     return (
         <div className={classesCustoms.avatar}>
@@ -80,10 +81,10 @@ export default function AvatarsSettings() {
                 }}
                 badgeContent={<label htmlFor="file"><SmallAvatar alt="Remy Sharp" src={editIcon} /></label>}
             >
-                <Avatar className={classes.root} alt="Travis Howard" src={ 
-                   file == ""
-                  ? noPhoto
-                  : file} />
+                <Avatar className={classes.root} alt="logo" src={
+                    file ? file : srcImage ? srcImage : noPhoto
+
+                } />
             </Badge>
 
             <input

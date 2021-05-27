@@ -28,8 +28,10 @@
     height: auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+}
+.switch{
+    color:#377DFF
 }
 .btn{
     width: 100%;
@@ -41,11 +43,25 @@
     font-size: 18px;
     line-height: 22px;
     height: 54px;
+    cursor: pointer;
+}
+.btnChangePassword{
+    width: 100%;
+    margin-top: 10px;
+    background: #377DFF;
+    border: 1px solid #377DFF;
+    border-radius: 4px;
+    color:#ffff;
+    font-size: 18px;
+    line-height: 22px;
+    height: 54px; 
+    cursor: pointer;
 }
 .profile{
     font-size: 16px;
     font-weight: bold;
     color: #243443;
+    margin-left: 77px;
 }
 .form{
     width: 100%;
@@ -68,4 +84,47 @@
 html {
     -ms-overflow-style: none;  /* IE 10+ */
     scrollbar-width: none; /* Firefox */
+}
+.blockMode{
+    width:100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+.blockMode .text{
+    font-size: 16px;
+    font-weight: bold;
+    color: #243443;
+}
+a{
+    text-decoration: none;
+}
+.logout{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #FFFFFF;
+    background:  #FFFFFF;
+    color: #ff0000;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
+}
+.logout img{
+    width: 30px;
+    margin-right: 10px;
+}
+.loaderBlock{
+    width: 100%;
+    margin-top: 15px;
+}
+.loaderBlock svg{
+    height: 170px !important;
 }

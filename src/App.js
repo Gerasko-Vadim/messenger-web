@@ -13,11 +13,12 @@ import SignUpStudent from './pages/signup-student/signup-student';
 import Home from './pages/home/home';
 import { PrivateRoute } from './components/PrivateRoute';
 import Settings from './pages/settings/settings';
+import ChangePassword from './pages/changePassword/changePassword';
 
 function App() {
   return (
     <Switch>
-      <Route exact path="/login" component={SignIn} />
+      <Route path="/login" component={SignIn} />
       <Route path="/signup" component={SignUp} />
       <Route path="/signup-teacher" component={SignUpTeaher} />
       <Route path="/signup-student" component={SignUpStudent} />
@@ -26,6 +27,9 @@ function App() {
       />
       <PrivateRoute path="/settings"
         component={Settings}
+      />
+      <PrivateRoute path="/change-password"
+        component={ChangePassword}
       />
     </Switch>
   );
