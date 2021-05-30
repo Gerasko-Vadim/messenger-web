@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import "./tabs.css"
 import News from '../news/news';
+import Chat from '../chat/chat';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -83,7 +84,7 @@ export default function NavTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-       чат
+       <Chat/>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <News/>

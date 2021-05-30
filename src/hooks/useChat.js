@@ -1,6 +1,7 @@
 import { SportsCricketRounded } from '@material-ui/icons'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 import io from 'socket.io-client'
 import { getAllNews } from '../redux/actions/actions'
 
@@ -100,7 +101,7 @@ export const useChat = (roomId) => {
             title: data.title,
             content: data.content
         }, (data) => {
-
+            toast.success("Новость была добавлена !");
             dispatch(getAllNews(data));
             console.log("getAllNews", data)
 
@@ -108,7 +109,14 @@ export const useChat = (roomId) => {
         })
     }
 
+    const deleteNews = (data) => {
+        socketNewsRef.current.emit('delete:new', data, (list) => {
+            dispatch(getAllNews(list));
+            toast.success("Новость успешно удалена !");
+        })
+    }
 
 
-    return { chats, messages, sendMessage, removeMessage, addChat, addNews }
+
+    return { chats, messages, sendMessage, removeMessage, addChat, addNews, deleteNews }
 }

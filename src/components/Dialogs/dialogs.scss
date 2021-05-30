@@ -1,0 +1,42 @@
+.dialogs {
+    &__item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 48px;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    &__item-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-around;
+        height: 100%;
+        margin-left: 10px;
+        max-width: 200px;
+    }
+    &__item-name-chat {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        max-width: 200px;
+        overflow: hidden;
+        color: #202020;
+    }
+    &__item-name-chat after{ 
+        content: "";
+        display: block;
+        clear: both;
+    }
+    &__item-group {
+        font-size: 12px;
+        line-height: 16px;
+        /* or 114% */
+
+        color: #202020;
+
+        mix-blend-mode: normal;
+        opacity: 0.4;
+    }
+}

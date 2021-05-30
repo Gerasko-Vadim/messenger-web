@@ -1,0 +1,43 @@
+.chat_groups {
+    width: 320px;
+    height: auto;
+    border-right: 1px solid #f7f7f7;
+    padding-right: 24px;
+}
+
+.chat {
+    display: flex;
+}
+
+.chat_dialog {
+    flex: 1;
+    padding-left: 24px;
+}
+
+.addGroup {
+    height: 60px;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.input {
+    margin-top: 20px;
+}
+
+.addGroup .span {
+    font-size: 16px;
+    color: #202020;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.addIcon {
+    font-size: 40px;
+}
+
+.iconListGroup {
+    margin-right: 5px;
+}

@@ -15,6 +15,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { useChat, useLocalStorage } from '../../../hooks';
+import { Menu, MenuItem } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,16 +43,45 @@ const useStyles = makeStyles((theme) => ({
     avatar: {
         backgroundColor: red[500],
     },
+    divHiden: {
+        width: 48,
+        height: 48,
+    }
+    ,
+    // trash:{
+
+    // },
+
 }));
 
 export default function RecipeReviewCard({ data }) {
+    const [userId] = useLocalStorage('userId')
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-
-
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const { deleteNews } = useChat()
+    const newsId = data._id;
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
+    };
+
+
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = ()=>{
+        setAnchorEl(null);
+    }
+
+    const handleCloseAndDelete = () => {
+        setAnchorEl(null);
+        deleteNews({
+            uId:userId,
+            _id: newsId
+        })
+
     };
 
     return (
@@ -63,13 +95,23 @@ export default function RecipeReviewCard({ data }) {
                     </Avatar>
                 }
                 action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
+                    userId == data.uId ?
+                        (<IconButton aria-label="settings" onClick={handleClick}>
+                            <MoreVertIcon />
+                        </IconButton>) : <div className={classes.divHiden}></div>
                 }
                 title={`${data.surname} ${data.name} ${data.patronymic}`}
-                subheader="September 14, 2016"
+                subheader={data.createDate}
             />
+            <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <MenuItem onClick={handleCloseAndDelete} id={data._id}><DeleteIcon color="secondary" /></MenuItem>
+            </Menu>
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
                     {data.title}

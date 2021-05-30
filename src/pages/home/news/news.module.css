@@ -21,3 +21,17 @@
     background: #377DFF;
     border-radius: 50%;
 }
+
+.noNews {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.noNews>span {
+    color: #377DFF;
+    font-size: 20px;
+}

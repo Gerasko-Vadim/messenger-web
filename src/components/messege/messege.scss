@@ -1,0 +1,87 @@
+.messege {
+    $self: &;
+    display: flex;
+    margin-bottom: 15px;
+    &__content {
+        display: flex;
+        max-width: 440px;
+        flex-direction: column;
+    }
+    &__avatar {
+        display: flex;
+        flex-direction: column-reverse;
+        img {
+            border-radius: 50px;
+            width: 33px;
+            height: 33px;
+            margin-right: 13px;
+            margin-bottom: 24px;
+        }
+    }
+    &__bubble {
+        background: #3674FF;
+        box-shadow: 0px 5px 5px rgba(54, 116, 255, 0.196733);
+        border-radius: 12px 12px 12px 0px;
+        padding: 15px;
+        max-width: 440px;
+    }
+    &__author {
+        color: #202020;
+        font-size: 12px;
+    }
+    &__text {
+        color: #fff;
+        font-size: 14px;
+        line-height: 20px;
+        display: inline-block;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+    }
+    &--isme {
+        display: flex;
+        flex-direction: row-reverse;
+        margin-bottom: 15px;
+        #{$self}__content {
+            flex-direction: column-reverse;
+            position: relative;
+        }
+        #{$self}__readed-icon {
+            position: relative;
+            bottom: 39px;
+            left: -25px;
+            width: 15px;
+            height: 8px;
+        }
+        #{$self}__avatar {
+            img {
+                margin-right: 0;
+                margin-left: 13px;
+                margin-bottom: 24px;
+            }
+        }
+        #{$self}__info {
+            display: flex;
+            align-items: center;
+            text-align: right;
+        }
+        #{$self}__bubble {
+            background: #ffffff;
+            border: 1px solid #ececec;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.0220444);
+            border-radius: 12px 12px 0px 12px;
+            order: 2;
+            #{$self}__text {
+                color: #202020;
+            }
+            #{$self}__author {
+                color: rgb(102, 100, 94);
+                flex-direction: row-reverse;
+            }
+            #{$self}__block-author {
+                display: flex;
+                flex-direction: row-reverse;
+            }
+        }
+    }
+}

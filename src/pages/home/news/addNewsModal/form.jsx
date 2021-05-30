@@ -12,7 +12,7 @@ const Form = () => {
 
     const submitForm = (data) => {
         console.log(data)
-        addNews({...data,userId})
+        addNews({...data,userId});
     }
     return (
         <form className={classes.form} onSubmit={handleSubmit(submitForm)}>
