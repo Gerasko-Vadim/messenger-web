@@ -42,7 +42,7 @@ const News = () => {
             />
             <div className={classes.newsBlock}>
                 {
-                  news &&   news !== [] ?(
+                  news &&   news.length!==0 ?(
                     news.map((item) => <RecipeReviewCard key={item._id} data={item} />)
                   ) : (
                       <div className={classes.noNews}><span>Новостей нет</span></div>

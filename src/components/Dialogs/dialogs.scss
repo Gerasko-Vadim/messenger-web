@@ -6,6 +6,11 @@
         height: 48px;
         width: 100%;
         margin-bottom: 15px;
+        cursor: pointer;
+        padding: 5px;
+    }
+    &__item:hover {
+        background-color: #f3f7ff;
     }
     &__item-content {
         display: flex;
@@ -21,10 +26,11 @@
         font-size: 14px;
         line-height: 16px;
         max-width: 200px;
+        text-overflow: ellipsis;
         overflow: hidden;
         color: #202020;
     }
-    &__item-name-chat after{ 
+    &__item-name-chat after {
         content: "";
         display: block;
         clear: both;
