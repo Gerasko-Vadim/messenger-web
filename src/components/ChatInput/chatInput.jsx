@@ -7,7 +7,7 @@ import SendIcon from '@material-ui/icons/Send';
 const ChatInput = () => {
     return (
         <div className="chat__input">
-            <Input size="large" placeholder="large size" prefix={<SmileOutlined />} />
+            <Input size="large" placeholder="Введите сообщение..." prefix={<SmileOutlined className="chat__input-smail" />} />
             <SendIcon className="chat__send-icon"/>
         </div>
     )

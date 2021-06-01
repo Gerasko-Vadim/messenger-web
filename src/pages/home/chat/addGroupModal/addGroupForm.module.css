@@ -1,0 +1,29 @@
+.form {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.inputs {
+    width: 100%;
+    margin-top: 15px !important;
+}
+
+.inputsBlock {
+    width: 100%;
+}
+
+.btn {
+    width: 100%;
+    margin-top: 40px;
+    background: #377DFF;
+    border: 1px solid #377DFF;
+    border-radius: 4px;
+    color: #ffff;
+    font-size: 18px;
+    line-height: 22px;
+    height: 54px;
+    cursor: pointer;
+}

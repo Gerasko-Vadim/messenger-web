@@ -79,7 +79,7 @@ const Settings = () => {
             />
             <div className={classes.settingsBlock}>
                 <div className={classes.header}>
-                    <Link to="/"><span className={classes.back}>Назад</span></Link>
+                    <Link to="/home"><span className={classes.back}>Назад</span></Link>
 
                     <span className={classes.profile}>Профиль</span>
 

@@ -31,7 +31,7 @@ function App() {
         Route path = "/signup-student"
         component = { SignUpStudent }
         /> <
-        PrivateRoute exact path = "/"
+        PrivateRoute  path = {["/home","/home/:id"]}
         component = { Home }
         /> <
         PrivateRoute path = "/settings"

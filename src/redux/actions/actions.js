@@ -1,6 +1,7 @@
 import API from "../API"
-import { GET_ALL_LIST_GROUPS, GET_DATA_USER, GET_LIST_NEWS } from "../constants/constants"
+import { GET_ALL_LIST_GROUPS, GET_DATA_USER, GET_LIST_NEWS,GET_LIST_CHATS } from "../constants/constants"
 import { toast } from "react-toastify";
+import { socketChat } from "../../core/socket";
 
 
 export const getAllGroupsAction = () => {
@@ -43,3 +44,17 @@ export const getAllNews = (listNews) => {
         payload: listNews
     }
 }
+export const getAllGroup = (listChats) => {
+    return {
+        type: GET_LIST_CHATS,
+        payload: listChats
+    }
+}
+
+ export const setCurrentChatId = (id) => dispatch => {
+    socketChat.emit('DIALOGS:JOIN', id);
+    // dispatch({
+    //   type: 'DIALOGS:SET_CURRENT_DIALOG_ID',
+    //   payload: id,
+    // });
+  }

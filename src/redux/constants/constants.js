@@ -1,3 +1,4 @@
 export const GET_ALL_LIST_GROUPS = 'GET_ALL_LIST_GROUPS'
 export const GET_DATA_USER = "GET_DATA_USER"
 export const GET_LIST_NEWS = " GET_LIST_NEWS"
+export const GET_LIST_CHATS = "GET_LIST_CHATS"

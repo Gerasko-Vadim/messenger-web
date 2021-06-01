@@ -1,12 +1,14 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useChat } from "../../../hooks"
 import RecipeReviewCard from "../card-new/card-new"
 import { makeStyles } from '@material-ui/core/styles';
 import classes from "./news.module.css"
 import AddCommentIcon from '@material-ui/icons/AddComment';
 import AddNewsModal from "./addNewsModal/addNewsModal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
+import { socketNews } from "../../../core/socket";
+import { getAllNews } from "../../../redux/actions/actions";
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -17,13 +19,18 @@ const useStyles = makeStyles((theme) => ({
 const News = () => {
     const classesCustom = useStyles();
     const [isOpen, setIsOpen] = React.useState(false)
-    const { sendMessage } = useChat()
     const news = useSelector((state) => state.news.news);
     const user = useSelector((state) => state.dataUser.data)
+    const dispatch = useDispatch()
 
     const handleChangeAddNew = () => {
         setIsOpen(true)
     }
+    useEffect(()=>{
+        socketNews.emit('getAllNews', (data) => {
+            dispatch(getAllNews(data))
+        })
+    },[])
     const handleClose = () => {
         setIsOpen(false)
     }

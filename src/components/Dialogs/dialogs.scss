@@ -1,4 +1,8 @@
 .dialogs {
+    width: 100%;
+    height: calc(100% - 137px);
+    padding-bottom: 10px;
+    overflow: auto;
     &__item {
         display: flex;
         flex-direction: row;

@@ -31,12 +31,12 @@
 .addGroup .span {
     font-size: 16px;
     color: #202020;
-    font-weight: bold;
+    font-weight: 550;
     margin-left: 20px;
 }
 
 .addIcon {
-    font-size: 40px;
+    font-size: 30px;
 }
 
 .iconListGroup {

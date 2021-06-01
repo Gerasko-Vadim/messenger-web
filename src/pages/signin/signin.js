@@ -25,7 +25,7 @@ const SignIn = () => {
             localStorage.setItem('userId', JSON.stringify(res.data._id));
             localStorage.setItem('token', JSON.stringify(res.data.accessToken));
             toast.success("Добро пожаловать!");
-            if(localStorage.getItem('token')) history.push({ pathname: '/' })
+            if(localStorage.getItem('token')) history.push({ pathname: '/home' })
  
         })
 
