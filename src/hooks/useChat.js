@@ -20,10 +20,9 @@ export const useChat = (roomId) => {
 
 
     const sendMessage = (data) => {
-        socketChat.emit('message:add', data, () => {
-            socketChat.on('chats', (chats) => {
-                console.log("mess", chats)
-            })
+        console.log("send",data)
+        socketChat.emit('message:add', data, (mess) => {
+            console.log(mess)
         })
 
     }
