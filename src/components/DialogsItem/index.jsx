@@ -9,7 +9,7 @@ const DialogsItem = ({data}) => (
         <div className="dialogs__item-avatar">
             <Avatar aria-label="recipe"  >
                 {
-                    data.nameRoom.charAt(0)
+                    // data.nameRoom.charAt(0)
           
                 }
             </Avatar>

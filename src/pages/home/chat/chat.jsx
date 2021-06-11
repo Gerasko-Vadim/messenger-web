@@ -25,15 +25,7 @@ const Chat = (props) => {
     const { getListChats } = useChat();
     const [isOpen, setIsOpen] = useState(false)
     const listGroups = useSelector((state) => state.groups.groups)
-    const { pathname } = window.location
 
-    useEffect(() => {
-        if ((pathname.split('/').pop()).length === 24) {
-            setCurrentChatId(pathname.split('/').pop())
-        }
-
-
-    }, [pathname])
 
     const handleOpenModal = () => {
         setIsOpen(true)

@@ -21,9 +21,7 @@ export const useChat = (roomId) => {
 
     const sendMessage = (data) => {
         console.log("send",data)
-        socketChat.emit('message:add', data, (mess) => {
-            console.log(mess)
-        })
+        socketChat.emit('message:add', data)
 
     }
     const removeMessage = (id) => {

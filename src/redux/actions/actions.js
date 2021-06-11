@@ -1,11 +1,11 @@
 import API from "../API"
-import { GET_ALL_LIST_GROUPS, GET_DATA_USER, GET_LIST_NEWS,GET_LIST_CHATS } from "../constants/constants"
+import { GET_ALL_LIST_GROUPS, GET_DATA_USER, GET_MESSAGES, GET_LIST_NEWS, GET_LIST_CHATS } from "../constants/constants"
 import { toast } from "react-toastify";
 import { socketChat } from "../../core/socket";
 
 
 export const getAllGroupsAction = () => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         await API.getAllGroups()
             .then(res => dispatch(success(res.data)))
     }
@@ -14,7 +14,7 @@ export const getAllGroupsAction = () => {
 }
 
 export const getDataUsers = () => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         await API.getDataUser()
             .then(res => dispatch(success(res.data)))
     }
@@ -23,7 +23,7 @@ export const getDataUsers = () => {
 }
 
 export const updateUser = (form) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         await API.updateUser(form)
             .then(res => toast.success("Данные успешно изменены !"))
             .catch(err => toast.error("Что то пошло не так"))
@@ -31,7 +31,7 @@ export const updateUser = (form) => {
 }
 
 export const changePassword = (form) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         await API.changePasssword(form)
             .then(res => toast.success("Пароль успешно изменен !"))
             .catch(err => toast.error(err.response.data.message))
@@ -51,10 +51,21 @@ export const getAllGroup = (listChats) => {
     }
 }
 
- export const setCurrentChatId = (id) => dispatch => {
+export const setCurrentChatId = (id) => {
+
+    console.log('join')
     socketChat.emit('DIALOGS:JOIN', id);
+
     // dispatch({
     //   type: 'DIALOGS:SET_CURRENT_DIALOG_ID',
     //   payload: id,
     // });
-  }
+}
+export const Messages = (data) => {
+    return  dispatch => {
+        dispatch(success(data))
+    }
+    function success(messages) { return { type: GET_MESSAGES, payload: messages } }
+}
+
+

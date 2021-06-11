@@ -1,10 +1,12 @@
 .chat{
+
     &__input{
         padding: 20px;
         width: 100%;
         display: flex;
         flex-direction:row;
         align-items:center;
+        position: relative;
     }
 
     &__send-icon{
@@ -16,4 +18,12 @@
         color:#202020;
         opacity:0.3;
     }
+
+}
+.emoji-mart{
+    position: absolute !important;
+    bottom:90px !important;
+}
+.MuiSvgIcon-colorSecondary{
+    color: #3674FF !important
 }

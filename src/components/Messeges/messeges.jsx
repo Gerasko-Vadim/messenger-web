@@ -1,54 +1,57 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
+import { socketChat } from "../../core/socket";
+import { useLocalStorage } from "../../hooks";
+import { Messages, setCurrentChatId } from "../../redux/actions/actions";
 import Messege from "../messege/messege";
 import "./messeges.scss"
 
-const Messeges =()=>{
+const Messeges = () => {
     const [blockHeight, setBlockHeight] = useState()
+    const messages = useSelector((state) => state.messages.messages)
+    const { pathname } = window.location
+    const dispatch = useDispatch()
+    const [userId] = useLocalStorage('userId')
+    const messagesRef = useRef(null);
 
 
-    useEffect(()=>{
-        setBlockHeight(window.innerHeight-281  + 'px')
-    },[])
-    return(
-        <div className="messeges" style={{height:blockHeight}}>
-             <Messege avatar={"https://sun9-2.userapi.com/impf/c851436/v851436222/37ebb/vKShELxAQr4.jpg?size=640x634&quality=96&sign=07cb88dbba3e9547168895f7227f65a9&type=album"}
-                    text={"Привет! Как дела? Привет! Как дела? Привет! Как дела? Привет! Как дела? Привет! Как дела? Привет! Как дела? Привет! Как дела? Привет! Как дела?"}
-                    date={new Date('Sun May 30 2021 17:14:40 GMT+0600 (Восточный Казахстан)')} />
-                <Messege avatar={"https://sun9-2.userapi.com/impf/c851436/v851436222/37ebb/vKShELxAQr4.jpg?size=640x634&quality=96&sign=07cb88dbba3e9547168895f7227f65a9&type=album"}
-                    text={"&"}
-                    date={new Date('Sun May 29 2021 16:27:40 GMT+0600 (Восточный Казахстан)')}
-                    isMe={true} />
-                <Messege avatar={"https://sun9-2.userapi.com/impf/c851436/v851436222/37ebb/vKShELxAQr4.jpg?size=640x634&quality=96&sign=07cb88dbba3e9547168895f7227f65a9&type=album"}
-                    text={"Привет! Как дела? Привет! Как дела? Привет! Как дела? Привет! Как дела? Привет! Как дела? Привет! Как дела?"}
-                    date={new Date('Sun May 30 2021 16:27:40 GMT+0600 (Восточный Казахстан)')}
-                    isMe={true}
-                    isReaded={true}
-                />
-                <Messege avatar={"https://sun9-2.userapi.com/impf/c851436/v851436222/37ebb/vKShELxAQr4.jpg?size=640x634&quality=96&sign=07cb88dbba3e9547168895f7227f65a9&type=album"}
-                    text={"&"}
-                    date={new Date('Sun May 29 2021 16:27:40 GMT+0600 (Восточный Казахстан)')}
-                    isMe={false}
 
-                />
-                <Messege avatar={"https://sun9-2.userapi.com/impf/c851436/v851436222/37ebb/vKShELxAQr4.jpg?size=640x634&quality=96&sign=07cb88dbba3e9547168895f7227f65a9&type=album"}
-                    text={"&"}
-                    date={new Date('Sun May 29 2021 16:27:40 GMT+0600 (Восточный Казахстан)')}
-                    isMe={false}
+    useEffect(() => {
+        if ((pathname.split('/').pop()).length === 24) {
+            console.log('jion efect')
+            setCurrentChatId(pathname.split('/').pop())
+        }
 
-                />
-                <Messege avatar={"https://sun9-2.userapi.com/impf/c851436/v851436222/37ebb/vKShELxAQr4.jpg?size=640x634&quality=96&sign=07cb88dbba3e9547168895f7227f65a9&type=album"}
-                    text={"&"}
-                    date={new Date('Sun May 29 2021 16:27:40 GMT+0600 (Восточный Казахстан)')}
-                    isMe={false}
+        socketChat.on('NEW:MESSAGES', (data) => dispatch(Messages(data)))
+        socketChat.on('MESSAGES:ROOMS', (data) => dispatch(Messages(data)))
+        return () => {
+            socketChat.removeListener('NEW:MESSAGES', (data) => console.log(data));
+        };
 
-                />
-                <Messege avatar={"https://sun9-2.userapi.com/impf/c851436/v851436222/37ebb/vKShELxAQr4.jpg?size=640x634&quality=96&sign=07cb88dbba3e9547168895f7227f65a9&type=album"}
-                    text={"&"}
-                    date={new Date('Sun May 29 2021 16:27:40 GMT+0600 (Восточный Казахстан)')}
-                    isMe={false}
 
-                />
+    }, [pathname])
 
+    useEffect(() => {
+        setBlockHeight(window.innerHeight - 281 + 'px')
+    }, [])
+
+    useEffect(() => {
+        messagesRef.current.scrollTo(0, 999999);
+    }, [messages.messages]);
+    return (
+        <div className="messeges" ref={messagesRef} style={{ height: blockHeight }}>
+            {
+                messages && messages.messages && messages.messages.map((item) => {
+                    return (
+                        <Messege avatar={item.author.avatar}
+                            text={item.message}
+                            date={new Date(item.createdTime)}
+                            isMe={userId == item.author._id}
+                            user={item.author}
+                        />
+                    )
+                })
+            }
         </div>
     )
 }
